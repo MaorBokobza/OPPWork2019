@@ -1,10 +1,4 @@
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectInputStream;
-import java.io.ObjectOutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -38,13 +32,18 @@ public  final class HighScoresTable {
             scoreInfoList.add(score);
             return;
         }
-        int rank = getRank(score.getScore());
-        size = scoreInfoList.size();
-        if (rank <= size) {
-            scoreInfoList.add(rank - 1, score);
-        }
+        scoreInfoList.add(score);
     }
 
+
+    public sortScore(List<ScoreInfo> scoreInfoList) {
+       int listSize= scoreInfoList.size();
+       ScoreInfo scoreInfoTemp;
+       for(int i = 0; i < listSize; i++) {
+        
+       }
+
+    }
     // Return table size.
 
     /**

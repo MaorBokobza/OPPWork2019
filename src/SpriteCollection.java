@@ -37,6 +37,7 @@ public class SpriteCollection {
         listOfSprites.remove(s);
     }
 
+
     /**
      * call timePassed() on all sprites.
      **/

@@ -19,6 +19,9 @@ public class Main {
         GameFlow gameFlow = new GameFlow(animationRunner, keyboardSensor, gui);
         List<LevelInformation> levels = new ArrayList<>();
 
+        Testing testing = new Testing();
+        testing.getRank();
+
         for (int i = 0; i < args.length; i++) {
             if (args[i] == "1") {
                 levels.add(new DirectHit());
@@ -32,6 +35,4 @@ public class Main {
         }
         gameFlow.runLevels(levels);
     }
-
-
 }

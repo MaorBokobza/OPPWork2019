@@ -11,7 +11,7 @@ import java.util.List;
 /**
  * @author Maor Bokobza
  */
-public class HighScoresTable {
+public  final class HighScoresTable {
     private int size;
     private List<ScoreInfo> scoreInfoList;
 
@@ -22,7 +22,7 @@ public class HighScoresTable {
      *
      * @param size table size.
      */
-    private HighScoresTable(int size) {
+    public HighScoresTable(int size) {
         this.size = size;
         this.scoreInfoList = new ArrayList<>();
     }
@@ -38,7 +38,8 @@ public class HighScoresTable {
             scoreInfoList.add(score);
             return;
         }
-        int rank = getRank((score.getScore()));
+        int rank = getRank(score.getScore());
+        size = scoreInfoList.size();
         if (rank <= size) {
             scoreInfoList.add(rank - 1, score);
         }
@@ -84,9 +85,11 @@ public class HighScoresTable {
             return 1;
         }
         for (int i = 0; i < size; i++) {
-            if (score > scoreInfoList.get(i).getScore()) {
-                return i + 1;
-            }
+
+                if (score > scoreInfoList.get(i).getScore()) {
+                    return i + 1;
+                }
+
         }
         return size + 1;
     }

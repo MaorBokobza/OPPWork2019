@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -30,20 +31,66 @@ public  final class HighScoresTable {
     public void add(ScoreInfo score) {
         if (scoreInfoList.isEmpty()) {
             scoreInfoList.add(score);
+//            ScoreInfo scoreInfoZero = new ScoreInfo("__", 0);
+//            for (int i = 1; i < scoreInfoList.size() - 1; i++) {
+//                scoreInfoList.add(scoreInfoZero);
+//            }
             return;
         }
+
+  //      List<ScoreInfo> listOfScores = new ArrayList<>();
+
         scoreInfoList.add(score);
+        sortScore(scoreInfoList);
+
+    }
+
+    /**
+     *
+     * @return size table size
+     */
+    public int getSize() {
+        return size;
+    }
+
+    /**
+     *
+     * @param size table size
+     */
+    public void setSize(int size) {
+        this.size = size;
+    }
+
+    /**
+     *
+     * @return scoreInfoList list of players' names and scores
+     */
+    public List<ScoreInfo> getScoreInfoList() {
+        return scoreInfoList;
+    }
+
+    /**
+     *
+     * @param scoreInfoList list of players' names and scores
+     */
+    public void setScoreInfoList(List<ScoreInfo> scoreInfoList) {
+        this.scoreInfoList = scoreInfoList;
+    }
+
+    public List<ScoreInfo> sortScore(List<ScoreInfo> scoreInfoList) {
+        Collections.sort(scoreInfoList, ScoreInfo.scoreInfoComparator);
+        return scoreInfoList;
     }
 
 
-    public sortScore(List<ScoreInfo> scoreInfoList) {
+    /*public sortScore(List<ScoreInfo> scoreInfoList) {
        int listSize= scoreInfoList.size();
        ScoreInfo scoreInfoTemp;
        for(int i = 0; i < listSize; i++) {
-        
+
        }
 
-    }
+    }*/
     // Return table size.
 
     /**
@@ -83,14 +130,17 @@ public  final class HighScoresTable {
         if (this.scoreInfoList.isEmpty()) {
             return 1;
         }
-        for (int i = 0; i < size; i++) {
-
-                if (score > scoreInfoList.get(i).getScore()) {
-                    return i + 1;
-                }
-
+        for (int i = 0; i < size - 1; i++) {
+            if (score  == scoreInfoList.get(i).getScore())
+                return i+1;
         }
-        return size + 1;
+        return 0;
+//
+//                if (score > scoreInfoList.get(i).getScore()) {
+//                    return i + 1;
+//                }
+//        }
+//        return size + 1;
     }
 
     // Clears the table

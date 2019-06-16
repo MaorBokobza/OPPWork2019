@@ -6,7 +6,7 @@ import biuoop.DrawSurface;
 public class HighScoresAnimation implements Animation {
     /**
      *
-     * @param scores playerws score and name
+     * @param scores player's score and name.
      */
     public HighScoresAnimation(HighScoresTable scores) {
 

@@ -5,7 +5,7 @@ import biuoop.DrawSurface;
  */
 public interface Animation {
     /**
-     * @param d draw surface
+     * @param d draw surface.
      */
     void doOneFrame(DrawSurface d);
 
@@ -13,5 +13,4 @@ public interface Animation {
      * @return true or false.
      */
     boolean shouldStop();
-
 }

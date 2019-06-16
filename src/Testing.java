@@ -16,7 +16,7 @@ public class Testing {
         highScoresTable.add(scoreInfo);
         scoreInfo = new ScoreInfo("test3", 6);
         highScoresTable.add(scoreInfo);
-        int score = 6;
+        int score = 1;
         int res;
        res = highScoresTable.getRank(score);
         System.out.println(res);

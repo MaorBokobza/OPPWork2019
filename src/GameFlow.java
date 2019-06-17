@@ -2,7 +2,6 @@ import biuoop.DialogManager;
 import biuoop.GUI;
 import biuoop.KeyboardSensor;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
@@ -36,6 +35,9 @@ public class GameFlow {
      */
     public void runLevels(List<LevelInformation> levels) {
         // ...
+        //if (highScoreTable.getSize() > 10) {
+
+        //   }
         for (LevelInformation levelInfo : levels) {
 
             GameLevel level = new GameLevel(levelInfo, this.keyboardSensor,
@@ -50,21 +52,18 @@ public class GameFlow {
                 break;
             }
 
-            //if (highScoreTable.getSize() > 10) {
-                String name = dialogManager.showQuestionDialog("Enter Name", "What is your name?", "");
-                scoreInfo = new ScoreInfo(name, level.getScore().getValue());
-                highScoreTable.add(scoreInfo);
-                try {
-                    highScoreTable.save(new File("highscores"));
-                } catch (IOException e) {
-                    System.err.println("Failed presenting the high score");
-                    e.printStackTrace(System.err);
-                }
-         //   }
-
-
+        }
+        String name = dialogManager.showQuestionDialog("Enter Name", "What is your name?", "");
+        scoreInfo = new ScoreInfo(name, GameLevel.getScore().getValue());
+        highScoreTable.add(scoreInfo);
+        try {
+            highScoreTable.save("highscores");
+        } catch (IOException e) {
+            System.err.println("Failed presenting the high score");
+            e.printStackTrace(System.err);
         }
         this.animationRunner.run(new EndScreen(this.keyboardSensor,
                 GameLevel.getScore(), true, this.gui));
+
     }
 }

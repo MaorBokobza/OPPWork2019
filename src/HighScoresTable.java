@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * @author Maor Bokobza
  */
-public final class HighScoresTable {
+public final class HighScoresTable implements Serializable{
     private int size;
     private List<ScoreInfo> scoreInfoList;
 
@@ -153,8 +153,8 @@ public final class HighScoresTable {
      * @param filename file's name.
      * @throws IOException IO exception
      */
-    public void load(File filename) throws IOException {
-        HighScoresTable highScoresTable = loadFromFile(filename);
+    public void load(String filename) throws IOException {
+        HighScoresTable highScoresTable = loadFromFile(new File(filename));
         if (highScoresTable.size() != 0) {
             this.size = highScoresTable.size; // change the current value to the file values.
             this.scoreInfoList = highScoresTable.scoreInfoList;
@@ -170,7 +170,7 @@ public final class HighScoresTable {
      * @param filename file's name.
      * @throws IOException IO exception.
      */
-    public void save(File filename) throws IOException {
+    public void save(String filename) throws IOException {
         ObjectOutputStream objectOutputStream = null;
         try {
             objectOutputStream = new ObjectOutputStream(new FileOutputStream(filename));

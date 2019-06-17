@@ -1,9 +1,10 @@
+import java.io.Serializable;
 import java.util.Comparator;
 
 /**
  * @author Maor Bokobza
  */
-public class ScoreInfo {
+public class ScoreInfo implements Serializable {
 
     public static Comparator<ScoreInfo> getScoreInfoComparator;
     private String name;

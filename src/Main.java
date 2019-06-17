@@ -2,6 +2,7 @@ import biuoop.DialogManager;
 import biuoop.GUI;
 import biuoop.KeyboardSensor;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,20 +13,21 @@ public class Main {
     /**
      * @param args arguments.
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         GUI gui = new GUI("My cool game", 600, 500);
         DialogManager dialog = gui.getDialogManager();
         HighScoresTable highScoresTable = new HighScoresTable(10);
+        highScoresTable.load("highscores");
         HighScoresAnimation highScoresAnimation = new HighScoresAnimation(highScoresTable);
         KeyboardSensor keyboardSensor = gui.getKeyboardSensor();
         AnimationRunner animationRunner = new AnimationRunner(gui);
         Menu<Task> menu = new MenuAnimation<>("Menu Title", animationRunner, keyboardSensor);
-        args = new String[]{"2", "3"};
+        args = new String[]{"1"};
         GameFlow gameFlow = new GameFlow(animationRunner, keyboardSensor, gui, dialog, highScoresTable);
 // the parameters to addSelection are:
 // key to wait for, line to print, what to return
         //menu.addSelection("s", "Start Game", gameFlow);
-//        menu.addSelection("h", "High Scores", new ShowHiScoresTask(animationRunner,highScoresAnimation));
+       menu.addSelection("h", "High Scores", new ShowHiScoresTask(animationRunner,highScoresAnimation));
         //menu.addSelection("e", "Exit", );
 
 

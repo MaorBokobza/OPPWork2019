@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * @author Maor Bokobza
  */
-public  final class HighScoresTable {
+public final class HighScoresTable {
     private int size;
     private List<ScoreInfo> scoreInfoList;
 
@@ -14,7 +14,6 @@ public  final class HighScoresTable {
     // The size means that the table holds up to size top scores.
 
     /**
-     *
      * @param size table size.
      */
     public HighScoresTable(int size) {
@@ -25,7 +24,6 @@ public  final class HighScoresTable {
     // Add a high-score.
 
     /**
-     *
      * @param score a player's name and score.
      */
     public void add(ScoreInfo score) {
@@ -38,7 +36,7 @@ public  final class HighScoresTable {
             return;
         }
 
-  //      List<ScoreInfo> listOfScores = new ArrayList<>();
+        //      List<ScoreInfo> listOfScores = new ArrayList<>();
 
         scoreInfoList.add(score);
         sortScore(scoreInfoList);
@@ -46,7 +44,6 @@ public  final class HighScoresTable {
     }
 
     /**
-     *
      * @return size table size
      */
     public int getSize() {
@@ -54,7 +51,6 @@ public  final class HighScoresTable {
     }
 
     /**
-     *
      * @param size table size
      */
     public void setSize(int size) {
@@ -62,15 +58,16 @@ public  final class HighScoresTable {
     }
 
     /**
-     *
      * @return scoreInfoList list of players' names and scores
      */
     public List<ScoreInfo> getScoreInfoList() {
         return scoreInfoList;
     }
 
+    public ScoreInfo get(int i) {
+        return scoreInfoList.get(i);
+    }
     /**
-     *
      * @param scoreInfoList list of players' names and scores
      */
     public void setScoreInfoList(List<ScoreInfo> scoreInfoList) {
@@ -94,7 +91,6 @@ public  final class HighScoresTable {
     // Return table size.
 
     /**
-     *
      * @return table size.
      */
     public int size() {
@@ -106,7 +102,6 @@ public  final class HighScoresTable {
     // scores come first.
 
     /**
-     *
      * @return scoreInfoList the list with the players' names and scores.
      */
     public List<ScoreInfo> getHighScores() {
@@ -121,7 +116,6 @@ public  final class HighScoresTable {
     //      be added to the list.
 
     /**
-     *
      * @param score the player's score.
      * @return 1 if list is empty, i + 1 if score > specific score in table,
      * or size + 1 if score < all scores in the table.
@@ -131,8 +125,8 @@ public  final class HighScoresTable {
             return 1;
         }
         for (int i = 0; i < size - 1; i++) {
-            if (score  == scoreInfoList.get(i).getScore())
-                return i+1;
+            if (score == scoreInfoList.get(i).getScore())
+                return i + 1;
         }
         return 0;
 //
@@ -146,17 +140,16 @@ public  final class HighScoresTable {
     // Clears the table
 
     /**
-     *  clearing the table.
+     * clearing the table.
      */
     public void clear() {
-            scoreInfoList.clear();
+        scoreInfoList.clear();
     }
 
     // Load table data from file.
     // Current table data is cleared.
 
     /**
-     *
      * @param filename file's name.
      * @throws IOException IO exception
      */
@@ -174,15 +167,21 @@ public  final class HighScoresTable {
     // Save table data to the specified file.
 
     /**
-     *
      * @param filename file's name.
      * @throws IOException IO exception.
      */
     public void save(File filename) throws IOException {
         ObjectOutputStream objectOutputStream = null;
-        objectOutputStream = new ObjectOutputStream(new FileOutputStream(filename));
-        objectOutputStream.writeObject(this);
-        objectOutputStream.close();
+        try {
+            objectOutputStream = new ObjectOutputStream(new FileOutputStream(filename));
+            objectOutputStream.writeObject(this);
+        } finally {
+            if (objectOutputStream != null) {
+                objectOutputStream.close();
+            }
+        }
+
+
     }
 
     // Read a table from file and return it.
@@ -190,7 +189,6 @@ public  final class HighScoresTable {
     // reading it, an empty table is returned.
 
     /**
-     *
      * @param filename file's name.
      * @return new HighScoresTable(10) a new table in case the file is empty.
      */

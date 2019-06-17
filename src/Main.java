@@ -1,3 +1,4 @@
+import biuoop.DialogManager;
 import biuoop.GUI;
 import biuoop.KeyboardSensor;
 
@@ -13,10 +14,12 @@ public class Main {
      */
     public static void main(String[] args) {
         GUI gui = new GUI("My cool game", 600, 500);
+        DialogManager dialog = gui.getDialogManager();
         KeyboardSensor keyboardSensor = gui.getKeyboardSensor();
         AnimationRunner animationRunner = new AnimationRunner(gui);
 
-        GameFlow gameFlow = new GameFlow(animationRunner, keyboardSensor, gui);
+        args = new String[]{"2", "3"};
+        GameFlow gameFlow = new GameFlow(animationRunner, keyboardSensor, gui,dialog);
         List<LevelInformation> levels = new ArrayList<>();
 
         Testing testing = new Testing();

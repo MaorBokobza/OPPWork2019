@@ -30,7 +30,7 @@ public class ScoreInfo {
     /**
      *
      */
-    public void setName() {
+    public void setName(String name) {
         this.name = name;
     }
 

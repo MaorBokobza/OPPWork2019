@@ -50,7 +50,7 @@ public class GameFlow {
                 break;
             }
 
-            if (highScoreTable.getSize() < 10) {
+            //if (highScoreTable.getSize() > 10) {
                 String name = dialogManager.showQuestionDialog("Enter Name", "What is your name?", "");
                 scoreInfo = new ScoreInfo(name, level.getScore().getValue());
                 highScoreTable.add(scoreInfo);
@@ -60,7 +60,7 @@ public class GameFlow {
                     System.err.println("Failed presenting the high score");
                     e.printStackTrace(System.err);
                 }
-            }
+         //   }
 
 
         }

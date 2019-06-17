@@ -15,11 +15,21 @@ public class Main {
     public static void main(String[] args) {
         GUI gui = new GUI("My cool game", 600, 500);
         DialogManager dialog = gui.getDialogManager();
+        HighScoresTable highScoresTable = new HighScoresTable(10);
+        HighScoresAnimation highScoresAnimation = new HighScoresAnimation(highScoresTable);
         KeyboardSensor keyboardSensor = gui.getKeyboardSensor();
         AnimationRunner animationRunner = new AnimationRunner(gui);
-
+        Menu<Task> menu = new MenuAnimation<>("Menu Title", animationRunner, keyboardSensor);
         args = new String[]{"2", "3"};
-        GameFlow gameFlow = new GameFlow(animationRunner, keyboardSensor, gui,dialog);
+        GameFlow gameFlow = new GameFlow(animationRunner, keyboardSensor, gui, dialog, highScoresTable);
+// the parameters to addSelection are:
+// key to wait for, line to print, what to return
+        //menu.addSelection("s", "Start Game", gameFlow);
+//        menu.addSelection("h", "High Scores", new ShowHiScoresTask(animationRunner,highScoresAnimation));
+        //menu.addSelection("e", "Exit", );
+
+
+
         List<LevelInformation> levels = new ArrayList<>();
 
         Testing testing = new Testing();
